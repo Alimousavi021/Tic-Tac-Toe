@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/output.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main {
+            /* height: 100vh; */
+            background-image: linear-gradient(45deg, rgb(31, 27, 27), rgb(35, 35, 76), rgb(19, 19, 96));
+
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            >.row {
+                display: flex;
+
+                >.cell {
+                    width: 100px;
+                    height: 100px;
+                    border: none;
+                    font-size: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    text-align: center;
+                    background-color: inherit;
+
+                }
+            }
+        }
+
+        #i1 {
+            border-right: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+
+        #i2 {
+            border-bottom: 2px solid black;
+            border-right: 2px solid black;
+
+        }
+
+        #i3 {
+            border-bottom: 2px solid black;
+        }
+
+        #i4 {
+            border-bottom: 2px solid black;
+            border-right: 2px solid black;
+        }
+
+        #i5 {
+            border-bottom: 2px solid black;
+            border-right: 2px solid black;
+        }
+
+        #i6 {
+            border-bottom: 2px solid black;
+        }
+
+        #i7 {
+            border-right: 2px solid black;
+        }
+
+        #i8 {
+            border-right: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="w-full flex flex-wrap h-[100vh]">
+        <div class="w-full h-[10vh] pt-5 ">
+            <h1 class="w-full flex justify-center text-[50px] text-[#4a1818] ">Tic Tac Toe</h1>
+            <p class="w-full justify-center text-center text-[20px] ">First player start as <b>playerX</b> and second
+                player start as <b>playerO</b></p>
+        </div>
+        <div class="w-full h-[60vh]  flex justify-center items-center ">
+            <div class="box">
+                <div class="row">
+                    <input onclick=" cell1(event) ; game()" type="text" readonly id="i1"
+                        class="cell outline-none"></input>
+                    <input onclick=" cell2(event) ; game()" type="text" readonly id="i2"
+                        class="cell outline-none"></input>
+                    <input onclick=" cell3(event) ; game()" type="text" readonly id="i3"
+                        class="cell outline-none"></input>
+                </div>
+                <div class="row">
+                    <input onclick="cell4(event) ; game()" type="text" readonly id="i4"
+                        class="cell outline-none"></input>
+                    <input onclick="cell5(event) ; game()" type="text" readonly id="i5"
+                        class="cell outline-none"></input>
+                    <input onclick="cell6(event) ; game()" type="text" readonly id="i6"
+                        class="cell outline-none"></input>
+                </div>
+                <div class="row">
+                    <input onclick="cell7(event) ; game()" type="text" readonly id="i7"
+                        class="cell outline-none"></input>
+                    <input onclick="cell8(event) ; game()" type="text" readonly id="i8"
+                        class="cell outline-none"></input>
+                    <input onclick="cell9(event) ; game()" type="text" readonly id="i9"
+                        class="cell outline-none"></input>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-[20vh] flex-wrap flex justify-center">
+            <button onclick="reset()"
+                class="w-[120px] h-[50px] text-white rounded-[10px] bg-slate-500 flex justify-center items-center text-2xl hover:bg-[#23235e] duration-500">RESET</button>
+            <p id="result" class="w-full flex justify-center items-center text-2xl text-white"></p>
+        </div>
+    </main>
+</body>
+<script>
+
+
+
+    function game() {
+        let i1 = document.getElementById('i1').value;
+        let i2 = document.getElementById('i2').value;
+        let i3 = document.getElementById('i3').value;
+        let i4 = document.getElementById('i4').value;
+        let i5 = document.getElementById('i5').value;
+        let i6 = document.getElementById('i6').value;
+        let i7 = document.getElementById('i7').value;
+        let i8 = document.getElementById('i8').value;
+        let i9 = document.getElementById('i9').value;
+        ////*
+        let inp1 = document.getElementById('i1');
+        let inp2 = document.getElementById('i2');
+        let inp3 = document.getElementById('i3');
+        let inp4 = document.getElementById('i4');
+        let inp5 = document.getElementById('i5');
+        let inp6 = document.getElementById('i6');
+        let inp7 = document.getElementById('i7');
+        let inp8 = document.getElementById('i8');
+        let inp9 = document.getElementById('i9');
+
+        if (
+            (i1 == 'X' || i1 == 'X') && (i2 == 'X' || i2 == 'X') && (i3 == 'X' || i3 == 'X')
+        ) {
+            document.getElementById('result').innerHTML = 'Player X Won!'
+            inp4.disabled = true;
+            inp5.disabled = true;
+            inp6.disabled = true;
+            inp7.disabled = true;
+            inp8.disabled = true;
+            inp9.disabled = true;
+            inp1.style.color = 'red'
+            inp2.style.color = 'red'
+            inp3.style.color = 'red'
+
+
+            // setTimeout(() => {
+            //     reset()
+
+            // }, 3000);
+        } else if (
+            (i4 == 'X' || i4 == 'X') && (i5 == 'X' || i5 == 'X') && (i6 == 'X' || i6 == 'X')
+
+        ) {
+            document.getElementById('result').innerHTML = 'Player X Won!'
+            inp1.disabled = true;
+            inp2.disabled = true;
+            inp3.disabled = true;
+            inp7.disabled = true;
+            inp8.disabled = true;
+            inp9.disabled = true;
+            inp4.style.color = 'red';
+            inp5.style.color = 'red';
+            inp6.style.color = 'red';
+        } else if (
+            (i7 == 'X' || i7 == 'X') && (i8 == 'X' || i8 == 'X') && (i9 == 'X' || i9 == 'X')
+        ) {
+            document.getElementById('result').innerHTML = 'Player X Won!'
+            inp1.disabled = true;
+            inp2.disabled = true;
+            inp3.disabled = true;
+            inp4.disabled = true;
+            inp5.disabled = true;
+            inp6.disabled = true;
+            inp7.style.color = 'red';
+            inp8.style.color = 'red';
+            inp9.style.color = 'red';
+
+        } else if (
+            (i1 == 'X' || i1 == 'X') && (i4 == 'X' || i4 == 'X') && (i7 == 'X' || i7 == 'X')
+        ) {
+            document.getElementById('result').innerHTML = 'Player X Won!'
+            inp2.disabled = true;
+            inp3.disabled = true;
+            inp5.disabled = true;
+            inp6.disabled = true;
+            inp8.disabled = true;
+            inp9.disabled = true;
+            inp1.style.color = 'red';
+            inp4.style.color = 'red';
+            inp7.style.color = 'red';
+        } else if (
+            (i2 == 'X' || i2 == 'X') && (i5 == 'X' || i5 == 'X') && (i8 == 'X' || i8 == 'X')
+        ) {
+            document.getElementById('result').innerHTML = 'Player X Won!'
+            inp1.disabled = true;
+            inp3.disabled = true;
+            inp4.disabled = true;
+            inp6.disabled = true;
+            inp7.disabled = true;
+            inp9.disabled = true;
+            inp2.style.color = 'red';
+            inp5.style.color = 'red';
+            inp8.style.color = 'red';
+
+        } else if (
+            (i3 == 'X' || i3 == 'X') && (i6 == 'X' || i6 == 'X') && (i9 == 'X' || i9 == 'X')
+        ) {
+            document.getElementById('result').innerHTML = 'Player X Won!'
+            inp1.disabled = true;
+            inp2.disabled = true;
+            inp4.disabled = true;
+            inp5.disabled = true;
+            inp7.disabled = true;
+            inp8.disabled = true;
+            inp3.style.color = 'red';
+            inp6.style.color = 'red';
+            inp9.style.color = 'red';
+
+        } else if (
+            (i1 == 'X' || i1 == 'X') && (i5 == 'X' || i5 == 'X') && (i9 == 'X' || i9 == 'X')
+        ) {
+            document.getElementById('result').innerHTML = 'Player X Won!'
+            inp2.disabled = true;
+            inp3.disabled = true;
+            inp4.disabled = true;
+            inp6.disabled = true;
+            inp7.disabled = true;
+            inp8.disabled = true;
+            inp1.style.color = 'red';
+            inp5.style.color = 'red';
+            inp9.style.color = 'red';
+
+        } else if (
+            (i3 == 'X' || i3 == 'X') && (i5 == 'X' || i5 == 'X') && (i7 == 'X' || i7 == 'X')
+        ) {
+            document.getElementById('result').innerHTML = 'Player X Won!'
+            inp1.disabled = true;
+            inp2.disabled = true;
+            inp4.disabled = true;
+            inp6.disabled = true;
+            inp8.disabled = true;
+            inp9.disabled = true;
+            inp3.style.color = 'red';
+            inp5.style.color = 'red';
+            inp7.style.color = 'red';
+        } else if (
+            (i1 == 'O' || i1 == 'O') && (i2 == 'O' || i2 == 'O') && (i3 == 'O' || i3 == 'O')
+        ) {
+            document.getElementById('result').innerHTML = 'Player O Won!'
+            inp4.disabled = true;
+            inp5.disabled = true;
+            inp6.disabled = true;
+            inp7.disabled = true;
+            inp8.disabled = true;
+            inp9.disabled = true;
+            inp1.style.color = 'grblue';
+            inp2.style.color = 'grblue';
+            inp3.style.color = 'grblue';
+        } else if (
+            (i4 == 'O' || i4 == 'O') && (i5 == 'O' || i5 == 'O') && (i6 == 'O' || i6 == 'O')
+
+        ) {
+            document.getElementById('result').innerHTML = 'Player O Won!'
+            inp1.disabled = true;
+            inp2.disabled = true;
+            inp3.disabled = true;
+            inp7.disabled = true;
+            inp8.disabled = true;
+            inp9.disabled = true;
+            inp4.style.color = 'blue';
+            inp5.style.color = 'blue';
+            inp6.style.color = 'blue';
+        } else if (
+            (i7 == 'O' || i7 == 'O') && (i8 == 'O' || i8 == 'O') && (i9 == 'O' || i9 == 'O')
+        ) {
+            document.getElementById('result').innerHTML = 'Player O Won!'
+            inp1.disabled = true;
+            inp2.disabled = true;
+            inp3.disabled = true;
+            inp4.disabled = true;
+            inp5.disabled = true;
+            inp6.disabled = true;
+            inp7.style.color = 'blue';
+            inp8.style.color = 'blue';
+            inp9.style.color = 'blue';
+        } else if (
+            (i1 == 'O' || i1 == 'O') && (i4 == 'O' || i4 == 'O') && (i7 == 'O' || i7 == 'O')
+        ) {
+            document.getElementById('result').innerHTML = 'Player O Won!'
+            inp2.disabled = true;
+            inp3.disabled = true;
+            inp5.disabled = true;
+            inp6.disabled = true;
+            inp8.disabled = true;
+            inp9.disabled = true;
+            inp1.style.color = 'blue';
+            inp4.style.color = 'blue';
+            inp7.style.color = 'blue';
+        } else if (
+            (i2 == 'O' || i2 == 'O') && (i5 == 'O' || i5 == 'O') && (i8 == 'O' || i8 == 'O')
+        ) {
+            document.getElementById('result').innerHTML = 'Player O Won!'
+            inp1.disabled = true;
+            inp3.disabled = true;
+            inp4.disabled = true;
+            inp6.disabled = true;
+            inp7.disabled = true;
+            inp9.disabled = true;
+            inp2.style.color = 'blue';
+            inp5.style.color = 'blue';
+            inp8.style.color = 'blue';
+        } else if (
+            (i3 == 'O' || i3 == 'O') && (i6 == 'O' || i6 == 'O') && (i9 == 'O' || i9 == 'O')
+        ) {
+            document.getElementById('result').innerHTML = 'Player O Won!'
+            inp1.disabled = true;
+            inp2.disabled = true;
+            inp4.disabled = true;
+            inp5.disabled = true;
+            inp7.disabled = true;
+            inp8.disabled = true;
+            inp3.style.color = 'blue';
+            inp6.style.color = 'blue';
+            inp9.style.color = 'blue';
+        } else if (
+            (i1 == 'O' || i1 == 'O') && (i5 == 'O' || i5 == 'O') && (i9 == 'O' || i9 == 'O')
+        ) {
+            document.getElementById('result').innerHTML = 'Player O Won!'
+            inp2.disabled = true;
+            inp4.disabled = true;
+            inp6.disabled = true;
+            inp7.disabled = true;
+            inp8.disabled = true;
+            inp3.disabled = true;
+            inp1.style.color = 'blue';
+            inp5.style.color = 'blue';
+            inp9.style.color = 'blue';
+        } else if (
+            (i3 == 'O' || i3 == 'O') && (i5 == 'O' || i5 == 'O') && (i7 == 'O' || i7 == 'O')
+        ) {
+            document.getElementById('result').innerHTML = 'Player O Won!'
+            inp1.disabled = true;
+            inp2.disabled = true;
+            inp4.disabled = true;
+            inp6.disabled = true;
+            inp8.disabled = true;
+            inp9.disabled = true;
+            inp3.style.color = 'blue';
+            inp5.style.color = 'blue';
+            inp7.style.color = 'blue';
+        } else if (
+            (i1 == 'X' || i1 == 'O') && (i2 == 'X' || i2 == 'O') && (i3 == 'X' || i3 == 'O') && (i4 == 'x' || i4 == 'O') && (i5 == 'X' || i5 == 'O') && (i6 == 'X' || i6 == 'O') && (i7 == 'X' || i7 == 'O') && (i8 == 'X' || i8 == 'O') && (i9 == 'X' || i9 == 'O')
+        ) {
+            document.getElementById('result').innerHTML = 'It\'s a Draw! No one won.'
+            inp1.style.color = 'green';
+            inp2.style.color = 'green';
+            inp3.style.color = 'green';
+            inp4.style.color = 'green';
+            inp5.style.color = 'green';
+            inp6.style.color = 'green';
+            inp7.style.color = 'green';
+            inp8.style.color = 'green';
+            inp9.style.color = 'green';
+        }
+
+        else {
+            if (flag == 1) {
+                document.getElementById('result').innerHTML = 'Player X turn'
+            } else {
+                document.getElementById('result').innerHTML = 'Player O turn'
+            }
+        }
+
+    }
+    function reset() {
+        location.reload();
+        document.getElementById("i1").value = '';
+        document.getElementById("i2").value = '';
+        document.getElementById("i3").value = '';
+        document.getElementById("i4").value = '';
+        document.getElementById("i5").value = '';
+        document.getElementById("i6").value = '';
+        document.getElementById("i7").value = '';
+        document.getElementById("i8").value = '';
+        document.getElementById("i9").value = '';
+        // document.querySelectorAll("input").disabled= false;
+        // document.querySelectorAll('.box>input').forEach((val)=>{
+        //     val.value='';
+
+        // })
+
+    }
+    flag = 1;
+
+    function cell1(e) {
+        if (flag == 1) {
+            e.target.value = "X";
+            e.target.disabled = true;
+            flag = 0;
+
+        } else {
+            e.target.value = "O";
+            e.target.disabled = true;
+            flag = 1;
+        }
+    }
+    function cell2(e) {
+        if (flag == 1) {
+            e.target.value = "X";
+            e.target.disabled = true;
+            flag = 0;
+
+        } else {
+            e.target.value = "O";
+            e.target.disabled = true;
+            flag = 1;
+        }
+    }
+    function cell3(e) {
+        if (flag == 1) {
+            e.target.value = "X";
+            e.target.disabled = true;
+            flag = 0;
+
+        } else {
+            e.target.value = "O";
+            e.target.disabled = true;
+            flag = 1;
+        }
+    }
+    function cell4(e) {
+        if (flag == 1) {
+            e.target.value = "X";
+            e.target.disabled = true;
+            flag = 0;
+
+        } else {
+            e.target.value = "O";
+            e.target.disabled = true;
+            flag = 1;
+        }
+    }
+    function cell5(e) {
+        if (flag == 1) {
+            e.target.value = "X";
+            e.target.disabled = true;
+            flag = 0;
+
+        } else {
+            e.target.value = "O";
+            e.target.disabled = true;
+            flag = 1;
+        }
+    }
+    function cell6(e) {
+        if (flag == 1) {
+            e.target.value = "X";
+            e.target.disabled = true;
+            flag = 0;
+
+        } else {
+            e.target.value = "O";
+            e.target.disabled = true;
+            flag = 1;
+        }
+    }
+    function cell7(e) {
+        if (flag == 1) {
+            e.target.value = "X";
+            e.target.disabled = true;
+            flag = 0;
+
+        } else {
+            e.target.value = "O";
+            e.target.disabled = true;
+            flag = 1;
+        }
+    }
+    function cell8(e) {
+        if (flag == 1) {
+            e.target.value = "X";
+            e.target.disabled = true;
+            flag = 0;
+
+        } else {
+            e.target.value = "O";
+            e.target.disabled = true;
+            flag = 1;
+        }
+    }
+    function cell9(e) {
+        if (flag == 1) {
+            e.target.value = "X";
+            e.target.disabled = true;
+            flag = 0;
+
+        } else {
+            e.target.value = "O";
+            e.target.disabled = true;
+            flag = 1;
+        }
+    }
+
+</script>
+
+</html>
+
+<!-- <div class="w-full flex justify-center items-center">
+    <span id="spanX" class="w-[20%] text-4xl text-[red] justify-center items-center flex"></span>
+    <span id="spanO" class="w-[20%] text-4xl text-[blue] justify-center items-center flex"></span>
+</div> -->
